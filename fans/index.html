@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	@-webkit-keyframes rotating /* Safari and Chrome */ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  -webkit-animation: rotating 2s linear infinite;
+  -moz-animation: rotating 2s linear infinite;
+  -ms-animation: rotating 2s linear infinite;
+  -o-animation: rotating 2s linear infinite;
+  animation: rotating 2s linear infinite;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+
+function speed(num){
+	var num_sp = parseFloat( 1 / num );
+	$(".rotating").css({
+		"animation" : "rotating "+num_sp+"s linear infinite"
+	});
+}
+function stop(){
+	var end = 1;
+	var inter = setInterval(function(){
+		if( end == 5 ){
+			clearInterval(inter);
+			$(".rotating").css({
+				"animation" : "5s linear 0s infinite normal none"
+			});
+		}else{
+			end++;
+			$(".rotating").css({
+				"animation" : "rotating "+end+"s linear infinite"
+			});
+		}
+	},1000);
+}
+</script>
+</head>
+<body>
+<div style="text-align: center;" >
+	<img class="rotating" style="width: 100px; height: 100px; line-height: 100px;"  src="https://lh3.googleusercontent.com/1biLTg4lN9TbiFn3laQUKNEcFRrJihyuSGFZcK_e6z2ehg9L6-3EvECh8uCeWmBdbkmSYxfnQJ7wPFJpu5Ny_42a3l-ZAjwL16kq0mVKb7MuIEO-=w780-rj-l80-nu-e365">
+	<br>
+	<div style="margin-top:15px;">
+		<button onclick="stop();">Stop</button>
+		<button onclick="speed(1);">1</button>
+		<button onclick="speed(2);">2</button>
+		<button onclick="speed(3);">3</button>
+	</div>
+</div>
+
+</body>
+</html>
